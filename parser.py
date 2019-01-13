@@ -13,6 +13,7 @@ URL = 'https://1xstavka.ru/'
 matches = []
 errors = []
 gtime = 17
+bet = 20
 
 class Parser:
     def __init__(self):
@@ -243,7 +244,7 @@ class GamePage:
                 bet.click()
                 time.sleep(0.5)
                 input_window = self.driver.find_element_by_xpath('//input[@class = "c-spinner__input bet_sum_input"]')
-                input_window.send_keys('20')
+                input_window.send_keys('{}'.format(bet))
                 time.sleep(0.5)
                 input_window.send_keys(Keys.ENTER)
                 time.sleep(15)
