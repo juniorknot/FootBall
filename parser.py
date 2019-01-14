@@ -77,7 +77,7 @@ class Parser:
                     if game_ID in matches:
                         matches.remove(game_ID)
 
-                # print('Time: ', game_time, balls_list[0], ':', balls_list[1])
+                print('Time: ', game_time, balls_list[0], ':', balls_list[1])
                 print(link_to_game)
                 print('matches: ', matches)
             # self.driver.quit()
@@ -90,31 +90,7 @@ class Parser:
         link1.click()
         time.sleep(0.2)
 
-    # def login(self):
-    #     elements = self.driver.find_elements_by_xpath('//span[@class="name"]')
-    #     for element in elements:
-    #         text = element.text
-    #         if text == 'ВОЙТИ':
-    #             element.click()
-    #             break
-    # time.sleep(0.2)
-    # login_window = self.driver.find_element_by_xpath(
-    #     '//input[@id="userLogin"]')
-    # login_window.click()
-    # time.sleep(0.2)
-    # login_window.send_keys('10935003')
-    #
-    # pass_window = self.driver.find_element_by_xpath(
-    #     '//input[@id="userPassword"]')
-    # pass_window.click()
-    # time.sleep(0.2)
-    # pass_window.send_keys('QWE123ZAQ!')
-    # time.sleep(1)
-    # pass_window.send_keys(Keys.ENTER)
-    # # login_key = self.driver.find_element_by_xpath(
-    # #     '//a[@class="enter_button_main"]')
-    # # login_key.click()
-    # time.sleep(3)
+
 
     def login(self):
         button = self.driver.find_element_by_xpath('//div[@id="loginout"]').find_element_by_class_name('name')
@@ -159,9 +135,12 @@ class Parser:
         time.sleep(0.1)
         self.driver.find_element_by_xpath(
             '//div[@data-type="200"]').click()  # changing amount of games to 200
-        football_button = self.driver.find_element_by_xpath(
-            '//label[@title="Футбол"]')
-        football_button.click()
+        try:
+            football_button = self.driver.find_element_by_xpath(
+                '//label[@title="Футбол"]')
+            football_button.click()
+        except NotVisible:
+            self.start()
         # filter_button = self.driver.find_element_by_xpath(
         #     '//input[@class = "multiselect__input"]')
         # filter_button.click()
@@ -244,7 +223,7 @@ class GamePage:
                 bet.click()
                 time.sleep(0.5)
                 input_window = self.driver.find_element_by_xpath('//input[@class = "c-spinner__input bet_sum_input"]')
-                input_window.send_keys('{}'.format(bet))
+                input_window.send_keys('20')
                 time.sleep(0.5)
                 input_window.send_keys(Keys.ENTER)
                 time.sleep(15)
