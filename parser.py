@@ -12,7 +12,7 @@ URL = 'https://1xstavka.ru/'
 # MIRROR = 'http://bet-1xbet.ru/zerkalo-sajta-1xbet/'
 matches = []
 errors = []
-gtime = 17
+gtime = 10
 bet = 20
 
 class Parser:
@@ -57,7 +57,7 @@ class Parser:
                     balls_list = game.find_elements_by_class_name('c-events-scoreboard__cell--all')
                     if len(balls_list)>1:
                         # if int(balls_list[0].text)>1 or int(balls_list[1].text)>1:
-                        if (int(balls_list[0].text) + int(balls_list[1].text)) > 1:
+                        if (int(balls_list[0].text) + int(balls_list[1].text)) > 0:
                             balls_ok = True
 
                     if balls_ok and game_time <gtime and game_ID not in matches:
@@ -110,13 +110,13 @@ class Parser:
             '//input[@id="userLogin"]')
         login_window.click()
         time.sleep(0.2)
-        login_window.send_keys('10935003')
+        login_window.send_keys('86183581')
 
         pass_window = self.driver.find_element_by_xpath(
             '//input[@id="userPassword"]')
         pass_window.click()
         time.sleep(0.2)
-        pass_window.send_keys('QWE123ZAQ!')
+        pass_window.send_keys('s1t9e8e1l!')
         time.sleep(1)
         pass_window.send_keys(Keys.ENTER)
         # login_key = self.driver.find_element_by_xpath(
@@ -198,13 +198,13 @@ class GamePage:
             '//input[@id="userLogin"]')
         login_window.click()
         time.sleep(0.2)
-        login_window.send_keys('10935003')
+        login_window.send_keys('86183581')
 
         pass_window = self.driver.find_element_by_xpath(
             '//input[@id="userPassword"]')
         pass_window.click()
         time.sleep(0.2)
-        pass_window.send_keys('QWE123ZAQ!')
+        pass_window.send_keys('s1t9e8e1l!')
         time.sleep(1)
         pass_window.send_keys(Keys.ENTER)
         # login_key = self.driver.find_element_by_xpath(
@@ -226,50 +226,53 @@ class GamePage:
         time1.click()
         bets = self.driver.find_elements_by_xpath('//span[@class = "bet_type"]')
         for bet in bets:
-        	# if bet.text == '2.5 Б':
-            if bet.text == '3 Б':
+            # if bet.text == '2.5 Б':
+            if bet.text == '2 Б':
                 bet.click()
                 time.sleep(0.5)
                 input_window = self.driver.find_element_by_xpath('//input[@class = "c-spinner__input bet_sum_input"]')
-                input_window.send_keys('50')
+                input_window.send_keys('100')
                 time.sleep(0.5)
                 input_window.send_keys(Keys.ENTER)
-                time.sleep(15)
+                time.sleep(3)
+                ok_cancel = self.driver.find_elements_by_class_name('o-btn-group__item')
+                ok = ok_cancel[0]
+                ok.click()
                 break
 
 
 
 
 
-    def login(self):
-        elements = self.driver.find_elements_by_xpath('//span[@class="name"]')
-        for element in elements:
-            text = element.text
-            if text == 'ВОЙТИ':
-                element.click()
-
-        time.sleep(0.2)
-        login_window = self.driver.find_element_by_xpath(
-            '//input[@id="userLogin"]')
-        login_window.click()
-        time.sleep(0.2)
-        login_window.send_keys('10935003')
-
-        pass_window = self.driver.find_element_by_xpath(
-            '//input[@id="userPassword"]')
-        pass_window.click()
-        time.sleep(0.2)
-        pass_window.send_keys('QWE123ZAQ!')
-        time.sleep(1)
-        login_key = self.driver.find_element_by_xpath(
-            '//a[@class="enter_button_main"]')
-        login_key.click()
-        time.sleep(2)
-        try:
-            self.driver.find_element_by_xpath(
-                '//div[@class="box-modal_close arcticmodal-close"]').click()
-        except NoElement:
-            pass
+    # def login(self):
+    #     elements = self.driver.find_elements_by_xpath('//span[@class="name"]')
+    #     for element in elements:
+    #         text = element.text
+    #         if text == 'ВОЙТИ':
+    #             element.click()
+    #
+    #     time.sleep(0.2)
+    #     login_window = self.driver.find_element_by_xpath(
+    #         '//input[@id="userLogin"]')
+    #     login_window.click()
+    #     time.sleep(0.2)
+    #     login_window.send_keys('10935003')
+    #
+    #     pass_window = self.driver.find_element_by_xpath(
+    #         '//input[@id="userPassword"]')
+    #     pass_window.click()
+    #     time.sleep(0.2)
+    #     pass_window.send_keys('QWE123ZAQ!')
+    #     time.sleep(1)
+    #     login_key = self.driver.find_element_by_xpath(
+    #         '//a[@class="enter_button_main"]')
+    #     login_key.click()
+    #     time.sleep(2)
+    #     try:
+    #         self.driver.find_element_by_xpath(
+    #             '//div[@class="box-modal_close arcticmodal-close"]').click()
+    #     except NoElement:
+    #         pass
 
 
 
